@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<title>Tution Wala</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="WebUni Education Template">
+	<meta name="keywords" content="webuni, education, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Favicon -->
+	<link href="{% static 'webuni/img/favicon.png' %}" rel="shortcut icon"/>
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{% static 'webuni/css/bootstrap.min.css'%}"/>
+	<link rel="stylesheet" href="{% static 'webuni/css/font-awesome.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'webuni/css/owl.carousel.css' %}"/>
+	<link rel="stylesheet" href="{% static 'webuni/css/style.css'%}"/>
+	<link rel="stylesheet" href="{% static 'webuni/css/freelancer.css'%}"/>
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+		<div class="container">
+		  <a class="navbar-brand js-scroll-trigger logo" href="/"><img src="{% static 'webuni/img/tutionwala.jpg' %}" alt=""></a>
+		  <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+			Menu
+	
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+			  <li class="nav-item mx-0 mx-lg-1">
+				<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'courses:home' %}">Home </a>
+			  </li>
+			  <li class="nav-item mx-0 mx-lg-1">
+				<li class="nav-item mx-0 mx-lg-1">
+					<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#kurset">Courses</a>
+				  </li>
+			  </li>
+			  {% if request.user.profile.is_teacher == True %}
+			  <li class="nav-item mx-0 mx-lg-1">
+				<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'courses:krijo_klase' %}">Create class</a>
+			  </li>
+			  <li class="nav-item mx-0 mx-lg-1">
+				<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'courses:krijo_lende' %}">Create thread</a>
+			  </li>
+			  <li class="nav-item mx-0 mx-lg-1">
+				<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'courses:krijo_mesim' %}">create content</a>
+			  </li>
+			  {% else %}
+			  <li class="nav-item mx-0 mx-lg-1">
+				<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'courses:contact' %}">Contact</a>
+			  </li>
+			  <li class="nav-item mx-0 mx-lg-1">
+				<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'courses:about' %}">About us</a>
+			  </li>
+			  <li class="nav-item mx-0 mx-lg-1">
+				<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'blogs:post_list' %}">Blog</a>
+			  </li>
+			  {% endif %}
+			  {% if request.user.is_authenticated %}
+			  
+			  <div class="dropdown show">
+				<a class=" dropdown-toggle nav-link py-3 px-0 px-lg-3 rounded js-scroll-triggeraa" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					{{request.user.username}}
+				</a>
+			  
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+				  <a class="dropdown-item" href="{% url 'users:profile' %}">Profile</a>
+				  <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
+				</div>
+			  </div>
+			  {% else %}
+			  <li class="nav-item mx-0 mx-lg-1">
+				<a class="active nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'account_login' %}">Login</a>
+			  </li>
+			  <li class="nav-item mx-0 mx-lg-1">
+				<a class="active nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'account_signup' %}">Register</a>
+			  </li>
+              {% endif %}
+			</ul>
+		  </div>
+		</div>
+	  </nav>
+
+{% include 'inc/messages.html' %}
+{% block content %}
+
+{% endblock content %}
+
+{% if request.user.is_authenticated %}
+{% else %}
+	<!-- banner section -->
+	<section class="banner-section spad">
+		<div class="container">
+			<div class="section-title mb-0 pb-2">
+				<h2>Register for teacher</h2>
+				<p>Open acount upload video and start making money</p>
+			</div>
+			<div class="text-center pt-5">
+				<a href="{% url 'account_signup' %}" class="site-btn">Register </a>
+			</div>
+		</div>
+	</section>
+	<!-- banner section end -->
+{% endif %}
+
+
+	<!-- footer section -->
+	<footer class="footer-section spad pb-0">
+		<div class="footer-top">
+			<div class="footer-warp">
+				<div class="row">
+					<div class="widget-item">
+						<h4>information </h4>
+						<ul class="contact-list">
+							<li>Ashish<br>Rohilla</li>
+							<li>956464656</li>
+							<li>tutionwala@gmail.com</li>
+						</ul>
+					</div>
+					<div class="widget-item">
+						<h4>Course</h4>
+						<ul>
+							<li><a href="">MAthematics</a></li>
+							<li><a href="">English</a></li>
+							<li><a href="">computer</a></li>
+							<li><a href="">Biology</a></li>
+							<li><a href="">Programing </a></li>
+						</ul>
+					</div>
+					<div class="widget-item">
+						<h4>Staff</h4>
+						<ul>
+							<li><a href="">swyam(founder)</a></li>
+							<li><a href="">Ashish</a></li>
+							<li><a href="">Dharmbir</a></li>
+							<li><a href="">Abhishek</a></li>
+							
+						</ul>
+					</div>
+					<div class="widget-item">
+						<h4>Social Profile</h4>
+						<ul>
+							<li><a href="">YouTube</a></li>
+							<li><a href="">Facebook</a></li>
+							<li><a href="">Instagram</a></li>
+							<li><a href="">Twitter</a></li>
+							<li><a href="">Linked In</a></li>
+					
+						</ul>
+					</div>
+					<div class="widget-item">
+						<h4>Contact us</h4>
+						<form class="footer-newslatter">
+							<input type="email" placeholder="E-mail">
+							<button class="site-btn">About us</button>
+							<p>We provide Knowledge</p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="footer-warp">
+				<ul class="footer-menu">
+					<li><a href="#">Terms & Conditions</a></li>
+					<li><a href="#">Register</a></li>
+					<li><a href="#">Privacy</a></li>
+				</ul>
+				<div class="">
+	Copyright &copy; Tution Wala <script>document.write(new Date().getFullYear());</script> All rights reserved.
+</div>
+			</div>
+		</div>
+	</footer>
+	<!-- footer section end -->
+
+
+	<!--====== Javascripts & Jquery ======-->
+	<script src="{% static 'webuni/js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'webuni/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'webuni/js/mixitup.min.js' %}"></script>
+	<script src="{% static 'webuni/js/circle-progress.min.js' %}"></script>
+	<script src="{% static 'webuni/js/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'webuni/js/main.js' %}"></script>
+	<script src="{% static 'webuni/js/freelancer.js' %}"></script>
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</html>

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Page info -->
+<div class="page-info-section set-bg" data-setbg="{% static 'webuni/img/page-bg/4.jpg' %}">
+  <div class="container">
+    <div class="site-breadcrumb">
+      <a href="/">Home</a>
+      <span>About</span>
+    </div>
+  </div>
+</div>
+<!-- Page info end -->
+
+
+<section class="about-us py-5 " id="about-us">
+    <div class="container mt-5">
+	<div class="row">
+		<div class="col-md-6">
+		    <h1 class='text-primary'>About Us</h1>
+		    <h2>Learn more about us</h2>
+		    <hr>
+		    <p>We are tution wala provide u best courses and teaching and make u succes in your life </p>
+		    <p>we are group of common educator where any techer can teach their respective courses and make your future bright.</p>
+		    <button type="button" class="btn btn-primary">Let's Know More</button>
+
+		</div>
+		<div class="col-md-6 tution">
+			<img src="{% static 'webuni/img/tutionwala.jpg' %}" alt="image">
+	</div>
+</div>
+</section>
+{% endblock %}
